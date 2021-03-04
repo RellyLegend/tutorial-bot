@@ -24,4 +24,4 @@ client.on('message', message => {
 })
 
 // Login to the bot
-client.login(`ODE3MDYwNjMyMjU1MjY2ODQ2.YEEBAg.6QWckRzv9t2VmBiKy_MobTpqRf8`)
+client.login(`INPUT YOUR BOT TOKEN HERE`)

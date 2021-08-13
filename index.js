@@ -2,7 +2,6 @@
 const { Client, Intents, MessageEmbed } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 // We'll use config.json to configure some stuff.
-// We'll define prefix, but use it on the next video.
 const { token, prefix } = require('./config.json');
 
 // Event emitted when bot is ready.
@@ -32,6 +31,16 @@ client.on("messageCreate", message => {
        if (!say) return message.channel.send(`Please input a text to say.`) // Makes sure there is a text for the bot to say.
 
        message.channel.send(say);
+   } else if (command === `purge`) { 
+     const amount = args[0];
+
+     if (!parseInt(amount)) return message.channel.send(`You need to specify a number between 1 - 100!`).then(async (msg) => {
+        await msg.delete()
+     });
+
+     if (!amount) return message.channel.send(`Specify an amount to purge.`) // Be right back... Sorry about that.
+
+     message.channel.bulkDelete(amount).then(message.channel.send(`Purged **${amount}** message(s).`))
    }
 });
 // Note: All the code in this video will be in my GitHub.
